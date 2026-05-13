@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>jp.igapyon</groupId>
+  <artifactId>miku-docx2md-maven-plugin</artifactId>
+  <version>0.9.0</version>
+  <packaging>maven-plugin</packaging>
+
+  <name>miku-docx2md-maven-plugin</name>
+  <description>Maven plugin adapter for miku-docx2md-java</description>
+  <url>https://github.com/igapyon/miku-docx2md-java-maven</url>
+
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.release>8</maven.compiler.release>
+    <miku-docx2md.runtime.version>0.9.0</miku-docx2md.runtime.version>
+    <junit.jupiter.version>5.14.1</junit.jupiter.version>
+    <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+    <maven.plugin.annotations.version>3.15.1</maven.plugin.annotations.version>
+    <maven.plugin.api.version>3.9.11</maven.plugin.api.version>
+    <maven.plugin.plugin.version>3.15.1</maven.plugin.plugin.version>
+    <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>jp.igapyon</groupId>
+      <artifactId>miku-docx2md</artifactId>
+      <version>${miku-docx2md.runtime.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${maven.plugin.api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>${maven.plugin.annotations.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>${maven.plugin.plugin.version}</version>
+        <configuration>
+          <goalPrefix>miku-docx2md</goalPrefix>
+        </configuration>
+        <executions>
+          <execution>
+            <id>descriptor</id>
+            <goals>
+              <goal>descriptor</goal>
+              <goal>helpmojo</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.plugin.version}</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

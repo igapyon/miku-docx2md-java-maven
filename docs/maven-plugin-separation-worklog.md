@@ -69,7 +69,7 @@ For another product, repeat this order:
 ## Verification Performed
 
 - `mvn install` in `workplace/miku-docx2md-java`
-  - Purpose: install `jp.igapyon:miku-docx2md:0.9.0` for this plugin's normal
+  - Purpose: install `jp.igapyon:miku-docx2md:1.0.0` for this plugin's normal
     Maven dependency resolution.
   - Result: passed.
 - `mvn test` in this repository
@@ -87,3 +87,19 @@ For another product, repeat this order:
 module at the time of this work. Removing that module and updating the runtime
 repository README are intentionally left for the separate runtime repository
 work item.
+
+## 2026-05-14 Runtime API Follow-Up
+
+The local `../miku-docx2md-java` checkout was updated before the corresponding
+GitHub branch was available in the plugin reference checkout.
+
+The Maven plugin adapter was changed to call the runtime file and batch APIs:
+
+- `MikuDocx2mdFileConverter.convertFile`
+- `MikuDocx2mdFileConverter.convertBatch`
+- `MikuDocx2mdFileOptions`
+- `MikuDocx2mdBatchOptions`
+
+The Maven plugin keeps its existing goal and parameter contract, including the
+default single-file output name when `miku-docx2md.outputFile` is omitted. The
+runtime repository remains read-only context for this plugin-side work.

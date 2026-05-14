@@ -5,6 +5,9 @@
 This repository uses `workplace/miku-docx2md-java` as a local read-only
 reference checkout for the runtime repository.
 
+For local runtime changes that have not been pushed to GitHub yet, use
+`../miku-docx2md-java` as the read-only compatibility reference.
+
 Do not make runtime repository changes as part of this plugin separation work.
 
 ## Commands
@@ -13,6 +16,12 @@ Install the runtime artifact into the local Maven repository when needed:
 
 ```bash
 mvn -f workplace/miku-docx2md-java/pom.xml install
+```
+
+For unpublished local runtime changes:
+
+```bash
+mvn -f ../miku-docx2md-java/pom.xml install
 ```
 
 Build and test this separated Maven plugin:
